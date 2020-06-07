@@ -7,10 +7,8 @@ export class Welcome extends Component {
     return (
       <Jumbotron fluid>
         <Container fluid>
-          <h1 className="display-3">
-            Welcome {this.props.match.params.name} You're Successfully logged
-            in!.
-          </h1>
+          <h2 className="display-3">Welcome {this.props.match.params.name}</h2>
+          <h2 className="display-3">You're Successfully logged in!.</h2>
           <p className="lead">
             <Link to="/todos">Manage ToDo List</Link>
           </p>

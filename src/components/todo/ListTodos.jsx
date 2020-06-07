@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Table, Card } from 'reactstrap';
 
 export class ListTodos extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
       todos: [
@@ -30,7 +30,7 @@ export class ListTodos extends Component {
 
   render() {
     return (
-      <Card className="ListTodos">
+      <Card className="ListTodos" body outline color="secondary">
         <h1>List Todos</h1>
         <Table striped hover responsive>
           <thead>
@@ -43,8 +43,7 @@ export class ListTodos extends Component {
           </thead>
           <tbody>
             {this.state.todos.map((todo) => (
-              <tr>
-                <td>{todo.id}</td>
+              <tr key={todo.id}>
                 <td>{todo.description}</td>
                 <td>{todo.targetDate.toDateString()}</td>
                 <td>{todo.done.toString()}</td>

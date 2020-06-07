@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Login.scss';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
+import AuthServices from '../utils/AuthServices';
 
 export class Login extends Component {
   constructor() {
@@ -23,6 +24,10 @@ export class Login extends Component {
 
   loginClicked() {
     if (this.state.username === 'danu' && this.state.password === '1234') {
+      AuthServices.registerSuccessfulLogin(
+        this.state.username,
+        this.state.password
+      );
       this.props.history.push(`/welcome/${this.state.username}`);
     } else {
       this.setState({ showSuccessMessage: false, hasLoginFailed: true });
@@ -31,33 +36,31 @@ export class Login extends Component {
 
   render() {
     return (
-      <div>
-        <Form>
-          <FormGroup className="box">
-            {this.state.hasLoginFailed && <h2>Invalid Credentials</h2>}
-            {this.state.showSuccessMessage && <h2>Login Successfully</h2>}
-            <h1>Login</h1>
-            <p className="text-muted">Please enter your login and password!</p>
-            <Input
-              type="text"
-              placeholder="Username"
-              name="username"
-              value={this.state.username}
-              onChange={this.handleChange}
-            />
-            <Input
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
-            <Button onClick={this.loginClicked} className="submit">
-              Login
-            </Button>
-          </FormGroup>
-        </Form>
-      </div>
+      <Form>
+        <FormGroup className="box">
+          {this.state.hasLoginFailed && <h2>Invalid Credentials</h2>}
+          {this.state.showSuccessMessage && <h2>Login Successfully</h2>}
+          <h1>Login</h1>
+          <p className="text-muted">Please enter your login and password!</p>
+          <Input
+            type="text"
+            placeholder="Username"
+            name="username"
+            value={this.state.username}
+            onChange={this.handleChange}
+          />
+          <Input
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={this.state.password}
+            onChange={this.handleChange}
+          />
+          <Button onClick={this.loginClicked} className="submit">
+            Login
+          </Button>
+        </FormGroup>
+      </Form>
     );
   }
 }
